@@ -9,6 +9,6 @@ Providers:
 - `combinedProvider`
 - `loadedProvider`
 
-Pass a list of providers using the `familiy` attribute.
+Pass providers using the `familiy` attribute.
 
-See [Example](Example).
+See [example](example).
