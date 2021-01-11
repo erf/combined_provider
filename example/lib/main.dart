@@ -26,11 +26,22 @@ final providerC = Provider<String>((ref) {
 
 final providerD = StateProvider((ref) => "done D");
 
+class MyNotifier extends StateNotifier {
+  MyNotifier(state) : super(state);
+}
+
+final myNotifier = MyNotifier('done E');
+
+final providerE = StateNotifierProvider<MyNotifier>((ref) {
+  return myNotifier;
+});
+
 final List<ProviderBase> providers = [
   providerA,
   providerB,
   providerC,
   providerD,
+  providerE,
 ];
 
 void main() {
@@ -107,6 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     str += (data[1] as AsyncData).value + ' ';
                     str += data[2] + ' ';
                     str += data[3].state + ' ';
+                    str += data[4].state + ' ';
                     return str;
                   },
                   loading: () => 'Loading..',
