@@ -36,12 +36,23 @@ final providerE = StateNotifierProvider<MyNotifier>((ref) {
   return myNotifier;
 });
 
+class MyChangeNotifier extends ChangeNotifier {
+  get hello => 'done F';
+}
+
+final myChangeNotifier = MyChangeNotifier();
+
+final providerF = ChangeNotifierProvider<MyChangeNotifier>((ref) {
+  return myChangeNotifier;
+});
+
 final List<ProviderBase> providers = [
   providerA,
   providerB,
   providerC,
   providerD,
   providerE,
+  providerF,
 ];
 
 void main() {
@@ -112,18 +123,11 @@ class _MyHomePageState extends State<MyHomePage> {
             Consumer(builder: (context, watch, _) {
               return Text(
                 watch(combinedProvider(providers)).when(
-                  data: (data) {
-                    String str = '';
-                    str += (data[0] as AsyncData).value + ' ';
-                    str += (data[1] as AsyncData).value + ' ';
-                    str += data[2] + ' ';
-                    str += data[3].state + ' ';
-                    str += data[4].state + ' ';
-                    return str;
-                  },
+                  data: (data) =>
+                      data.fold('', (prev, val) => prev + ' ' + val),
                   loading: () => 'Loading..',
                   error: (error, stack) {
-                    return 'My error!';
+                    return 'Error: ${error.toString()}';
                   },
                 ),
               );

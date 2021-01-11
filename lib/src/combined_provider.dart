@@ -33,7 +33,22 @@ final combinedProvider =
   // else collect data
   final result = [];
   for (final provider in providerList) {
-    result.add(ref.watch(provider));
+    if (provider is StreamProvider) {
+      result.add(ref.watch(provider).data.value);
+    } else if (provider is FutureProvider) {
+      result.add(ref.watch(provider).data.value);
+    } else if (provider is StateProvider) {
+      result.add(ref.watch(provider).state);
+    } else if (provider is StateNotifier) {
+      result.add(ref.watch(provider).state);
+    } else if (provider is StateNotifierProvider) {
+      result.add(ref.watch(provider.state));
+    } else if (provider is Provider) {
+      result.add(ref.watch(provider));
+    } else {
+      final error = 'Provider ${provider.runtimeType} is not supported';
+      return AsyncError(error);
+    }
   }
   return AsyncData(result);
 });
