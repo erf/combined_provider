@@ -6,8 +6,8 @@ Also includes a provider for checking if a all providers are in the `AsyncData` 
 
 Providers:
 
-- `combinedProvider`
-- `loadedProvider`
+- `combined_provider.dart`
+- `loaded_provider.dart`
 
 Pass providers using the `familiy` attribute.
 
