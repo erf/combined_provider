@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -46,6 +48,12 @@ final providerF = ChangeNotifierProvider<MyChangeNotifier>((ref) {
   return myChangeNotifier;
 });
 
+final streamProvider = StreamProvider<String>((ref) {
+  return Stream.periodic(Duration(seconds: 1), (count) {
+    return 'event $count';
+  });
+});
+
 final List<ProviderBase> providers = [
   providerA,
   providerB,
@@ -53,6 +61,7 @@ final List<ProviderBase> providers = [
   providerD,
   providerE,
   //providerF,
+  streamProvider,
 ];
 
 void main() {
