@@ -52,7 +52,7 @@ final List<ProviderBase> providers = [
   providerC,
   providerD,
   providerE,
-  providerF,
+  //providerF,
 ];
 
 void main() {
