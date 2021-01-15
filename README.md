@@ -1,14 +1,9 @@
 # combined_provider
 
-A `riverpod` provider for watching a list of providers and getting an `AsyncData<List>` result when all objects is not in either an `AsyncError` or `AsyncLoading` state.
+** EXPERIMENTAL CODE ** 
 
-Also includes a provider for checking if a all providers are in the `AsyncData` state.
+`combined_provider` - a `riverpod` provider for watching when a list of providers are in the `AsyncData` state, and then return the result as a `List`.
 
-Providers:
-
-- `combined_provider.dart`
-- `loaded_provider.dart`
-
-Pass providers using the `familiy` attribute.
+`loaded_provider`   - a `riverpod` provider for watching when a list of providers are in the `AsyncData` state, and then return `true`.
 
 See [example](example).
